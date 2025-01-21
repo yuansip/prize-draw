@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Put your title here</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #2c3e50;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #ff4d4d10, #ffd70010);
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            color: #c41e3a;  /* 中国红 */
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
+                         -1px -1px 0 #fff,  
+                         1px -1px 0 #fff,
+                         -1px 1px 0 #fff,
+                         1px 1px 0 #fff;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #c41e3a;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: #c41e3a;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .config-section, .draw-section {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(255, 77, 79, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 77, 79, 0.2);
+        }
+
+        .prize-config {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .prize-input {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.2rem;
+            border-radius: 15px;
+            min-width: 200px;
+            border: 1px solid rgba(255, 77, 79, 0.1);
+            box-shadow: 0 2px 8px rgba(255, 77, 79, 0.05);
+        }
+
+        .prize-input label {
+            font-size: 1.1rem;
+            color: #c41e3a;
+            font-weight: 500;
+        }
+
+        .prize-input input {
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 77, 79, 0.2);
+            border-radius: 8px;
+            width: 60px;
+            text-align: center;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .upload-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            width: calc(100% - 2rem);
+            max-width: 100%;
+            margin: 0.5rem 1rem;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input[type="file"]:hover {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 美化文件选择按钮 */
+        input[type="file"]::-webkit-file-upload-button {
+            background: rgba(66, 153, 225, 0.8);
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            color: white;
+            margin-right: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"]::-webkit-file-upload-button:hover {
+            background: rgba(49, 130, 206, 0.9);
+        }
+
+        /* Firefox 样式 */
+        input[type="file"]::file-selector-button {
+            background: rgba(66, 153, 225, 0.8);
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            color: white;
+            margin-right: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background: rgba(49, 130, 206, 0.9);
+        }
+
+        .button {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 20px;  /* 更圆润的按钮 */
+            background: linear-gradient(145deg, #ff4d4d, #ff1a1a);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(255, 77, 79, 0.2);
+        }
+
+        .button:hover {
+            background: linear-gradient(145deg, #ff1a1a, #ff4d4d);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 77, 79, 0.3);
+        }
+
+        .button.reset {
+            background: #f56565;
+        }
+
+        .button.reset:hover {
+            background: #e53e3e;
+        }
+
+        .current-photo {
+            width: 350px;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;  /* 添加相对定位 */
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+            padding: 8px;  /* 内边距用于显示渐变边框 */
+            box-shadow: 
+                0 10px 30px rgba(255, 77, 79, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+                0 0 20px rgba(255, 255, 255, 0.5) inset;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .current-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 16px;  /* 略小于外层圆角 */
+            background: linear-gradient(135deg, rgba(255, 77, 79, 0.2), rgba(255, 255, 255, 0.2));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .current-photo img {
+            width: calc(100% - 16px);  /* 减去padding的宽度 */
+            height: calc(100% - 16px);  /* 减去padding的高度 */
+            object-fit: cover;
+            border-radius: 12px;  /* 略小于外层圆角 */
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 添加悬停效果 */
+        .current-photo:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 40px rgba(255, 77, 79, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.9) inset,
+                0 0 25px rgba(255, 255, 255, 0.6) inset;
+        }
+
+        #currentPrize {
+            font-size: 2.2rem;
+            color: #c41e3a;
+            text-align: center;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .winners-list {
+            margin-top: 0rem;
+            text-align: center;
+        }
+
+        .winners-list img {
+            border: 3px solid #fff;
+            box-shadow: 0 4px 12px rgba(255, 77, 79, 0.15);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .winners-list img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .fullscreen-btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            background: rgba(196, 30, 58, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(196, 30, 58, 0.9);
+        }
+
+        .photo-preview, .bg-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .photo-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .bg-preview img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        .draw-display {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+        .current-photo {
+            width: 350px;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .current-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 0.5rem;
+        }
+        .button:disabled {
+            background: #d9d9d9;
+            cursor: not-allowed;
+        }
+        .hidden {
+            display: none;
+        }
+        .upload-section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .upload-section h3 {
+            margin-top: 0;
+        }
+        .fullscreen-btn {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 1000;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .fullscreen-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        /* 在全屏模式下居中内容 */
+        .fullscreen-active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .fullscreen-active .config-section,
+        .fullscreen-active .draw-section {
+            width: 90%;
+            max-width: 1200px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #8b0000;
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
+                         -1px -1px 0 #fff,
+                         1px -1px 0 #fff,
+                         -1px 1px 0 #fff,
+                         1px 1px 0 #fff;
+            padding: 8px 16px;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        /* 添加居中样式的类 */
+        .text-center {
+            text-align: center;
+        }
+        /* 左对齐样式 */
+        .config-title {
+            text-align: left;
+            margin-left: 1rem;
+            font-size: 1.6rem;
+        }
+        /* 添加一个包装器使标题居中 */
+        .title-wrapper {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        /* 添加获奖者卡片样式 */
+        .winner-card {
+            display: inline-block;
+            position: relative;
+            margin: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .winner-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(255, 77, 79, 0.15);
+        }
+
+        .delete-winner {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(220, 38, 38, 0.9);
+            color: white;
+            border: 2px solid white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .winner-card:hover .delete-winner {
+            opacity: 1;
+        }
+
+        .delete-winner:hover {
+            background: rgba(185, 28, 28, 1);
+            transform: scale(1.1);
+        }
+
+        /* 添加参与者照片卡片样式 */
+        .participant-card {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .participant-card:hover {
+            transform: scale(1.05);
+        }
+
+        .participant-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .delete-participant {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(220, 38, 38, 0.9);
+            color: white;
+            border: 1px solid white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .participant-card:hover .delete-participant {
+            opacity: 1;
+        }
+
+        .delete-participant:hover {
+            background: rgba(185, 28, 28, 1);
+            transform: scale(1.1);
+        }
+
+        /* 左侧抽奖区域 */
+        .draw-left {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 1rem;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-height: 700px;
+        }
+
+        /* 右侧获奖名单 */
+        .winners-list {
+            flex: 1;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 1rem;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-height: 700px;
+        }
+
+        .winners-list h3 {
+            margin: 0 0 0.8rem 0;
+        }
+
+        /* 奖项分组样式 */
+        .prize-group {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+
+        .prize-group h4 {
+            color: #c41e3a;
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        /* 调整获奖者卡片在列表中的样式 */
+        .winner-card {
+            margin: 3px;
+        }
+
+        /* 自定义弹窗样式 */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            min-width: 300px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 77, 79, 0.2);
+            display: none;
+            text-align: center;
+        }
+
+        .alert-content {
+            color: #c41e3a;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            z-index: 999;
+            display: none;
+        }
+
+        .alert-button {
+            padding: 0.6rem 2rem;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #ff4d4d, #ff1a1a);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .alert-button:hover {
+            background: linear-gradient(145deg, #ff1a1a, #ff4d4d);
+            transform: translateY(-2px);
+        }
+
+        #playMusicBtn {
+            z-index: 1000;
+            padding: 10px 20px;
+            background: rgba(196, 30, 58, 0.8);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
+        }
+
+        #playMusicBtn:hover {
+            background: rgba(196, 30, 58, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(196, 30, 58, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <button id="fullscreenBtn" class="fullscreen-btn">进入全屏</button>
+    <div class="title-wrapper">
+        <h1>Main Title</h1>
+    </div>
+    <div class="title-wrapper">
+        <div class="subtitle">Subtitle</div>
+    </div>
+    
+    <div id="configSection" class="config-section">
+        <h2 class="config-title">配置</h2>
+        <div class="upload-section">
+            <h3 class="config-title">背景图片设置</h3>
+            <input type="file" id="bgUpload" accept="image/*">
+            <div class="bg-preview" id="bgPreview"></div>
+        </div>
+        <div class="upload-section">
+            <h3 class="config-title">背景音乐设置</h3>
+            <input type="file" id="musicUpload" accept="audio/*">
+            <audio id="bgMusic" loop>
+                您的浏览器不支持 audio 元素。
+            </audio>
+        </div>
+        <div class="prize-config">
+            <div class="prize-input">
+                <label>一等奖数量：</label>
+                <input type="number" id="firstPrize" min="0" value="1">
+            </div>
+            <div class="prize-input">
+                <label>二等奖数量：</label>
+                <input type="number" id="secondPrize" min="0" value="2">
+            </div>
+            <div class="prize-input">
+                <label>三等奖数量：</label>
+                <input type="number" id="thirdPrize" min="0" value="3">
+            </div>
+        </div>
+        
+        <div>
+            <label>上传参与者照片：</label>
+            <input type="file" id="photoUpload" multiple accept="image/*">
+        </div>
+        
+        <div class="photo-preview" id="photoPreview"></div>
+        
+        <button id="startDraw" class="button">开始抽奖</button>
+    </div>
+    
+    <div id="drawSection" class="draw-section hidden">
+        <div class="draw-display">
+            <div class="draw-left">
+                <h2 id="currentPrize" class="text-center">正在抽取：三等奖</h2>
+                <div class="current-photo">
+                    <img id="displayPhoto" src="/api/placeholder/300/300" alt="当前照片">
+                </div>
+                <div class="button-group">
+                    <button id="toggleDraw" class="button">开始</button>
+                    <button id="resetDraw" class="button reset">重置</button>
+                </div>
+            </div>
+            
+            <div class="winners-list" id="winnersList">
+                <h3 class="text-center">获奖名单</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert-overlay" id="alertOverlay"></div>
+    <div class="custom-alert" id="customAlert">
+        <div class="alert-content" id="alertContent"></div>
+        <button class="alert-button" onclick="closeAlert()">确定</button>
+    </div>
+
+    <script>
+        let participants = [];
+        let winners = new Map();
+        let isDrawing = false;
+        let drawInterval;
+        let currentPrizeLevel = 3;
+        let isFullscreen = false;
+        let backgroundImage = null;
+        let bgMusic = null;
+
+        // 背景图片上传处理
+        document.getElementById('bgUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    backgroundImage = e.target.result;
+                    document.body.style.backgroundImage = `url(${backgroundImage})`;
+                    
+                    // 更新预览
+                    const preview = document.getElementById('bgPreview');
+                    preview.innerHTML = `<img src="${backgroundImage}" alt="背景预览">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 音乐上传处理
+        document.getElementById('musicUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(file && file.type.startsWith('audio/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const audio = document.getElementById('bgMusic');
+                    audio.src = e.target.result;
+                    bgMusic = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 全屏控制
+        document.getElementById('fullscreenBtn').addEventListener('click', function() {
+            if (!isFullscreen) {
+                // 进入全屏
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
+                this.textContent = '退出全屏';
+                document.body.classList.add('fullscreen-active');
+            } else {
+                // 退出全屏
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                this.textContent = '进入全屏';
+                document.body.classList.remove('fullscreen-active');
+            }
+            isFullscreen = !isFullscreen;
+        });
+
+        // 监听全屏变化（处理用户按ESC退出全屏的情况）
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+        function handleFullscreenChange() {
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && 
+                !document.mozFullScreenElement && !document.msFullscreenElement) {
+                fullscreenBtn.textContent = '进入全屏';
+                document.body.classList.remove('fullscreen-active');
+                isFullscreen = false;
+            }
+        }
+
+        // 文件上传处理
+        document.getElementById('photoUpload').addEventListener('change', function(e) {
+            const files = e.target.files;
+            const preview = document.getElementById('photoPreview');
+            
+            for(let file of files) {
+                if(file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const photoUrl = e.target.result;
+                        // 添加到参与者列表
+                        participants.push(photoUrl);
+                        // 创建预览卡片
+                        addParticipantCard(photoUrl, preview);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+            // 清空文件输入框，允许重复选择同一文件
+            this.value = '';
+        });
+
+        // 添加参与者卡片
+        function addParticipantCard(photoUrl, container) {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'participant-card';
+            cardDiv.innerHTML = `
+                <img src="${photoUrl}" alt="参与者">
+                <button class="delete-participant" title="删除参与者">×</button>
+            `;
+
+            // 添加删除按钮事件
+            const deleteBtn = cardDiv.querySelector('.delete-participant');
+            deleteBtn.addEventListener('click', () => {
+                // 从参与者列表中移除
+                const index = participants.indexOf(photoUrl);
+                if (index > -1) {
+                    participants.splice(index, 1);
+                }
+                // 从显示中移除
+                cardDiv.remove();
+                
+                // 如果该参与者已中奖，也从获奖名单中移除
+                winners.forEach((winnerList, level) => {
+                    const winnerIndex = winnerList.indexOf(photoUrl);
+                    if (winnerIndex > -1) {
+                        winnerList.splice(winnerIndex, 1);
+                        if (winnerList.length === 0) {
+                            winners.delete(level);
+                        }
+                        // 更新获奖名单显示
+                        updateWinnersList();
+                        // 更新当前抽奖状态
+                        let newLevel = 3;
+                        while (newLevel > 1 && shouldMoveToNextPrize(newLevel)) {
+                            newLevel--;
+                        }
+                        if (level >= currentPrizeLevel) {
+                            currentPrizeLevel = newLevel;
+                            updatePrizeDisplay();
+                        }
+                    }
+                });
+            });
+
+            container.appendChild(cardDiv);
+        }
+        
+        // 开始抽奖
+        document.getElementById('startDraw').addEventListener('click', function() {
+            // 检查参与者
+            if(participants.length === 0) {
+                showAlert('请先上传参与者照片！');
+                return;
+            }
+            
+            // 检查奖项数量
+            const firstPrize = parseInt(document.getElementById('firstPrize').value);
+            const secondPrize = parseInt(document.getElementById('secondPrize').value);
+            const thirdPrize = parseInt(document.getElementById('thirdPrize').value);
+            
+            if (firstPrize <= 0 || secondPrize <= 0 || thirdPrize <= 0) {
+                showAlert('每个奖项的数量必须大于0！');
+                return;
+            }
+            
+            document.getElementById('configSection').classList.add('hidden');
+            document.getElementById('drawSection').classList.remove('hidden');
+            winners.clear();
+            currentPrizeLevel = 3;
+            updatePrizeDisplay();
+            drawCandidatePhoto();
+
+            // 播放背景音乐
+            const audio = document.getElementById('bgMusic');
+            if (audio.src) {
+                audio.play().catch(error => {
+                    console.log('自动播放失败:', error);
+                    // 添加一个播放按钮作为备选方案
+                    if (!document.getElementById('playMusicBtn')) {
+                        const playBtn = document.createElement('button');
+                        playBtn.id = 'playMusicBtn';
+                        playBtn.className = 'button';
+                        playBtn.style.position = 'fixed';
+                        playBtn.style.bottom = '20px';
+                        playBtn.style.right = '20px';
+                        playBtn.innerHTML = '播放音乐';
+                        playBtn.onclick = () => audio.play();
+                        document.body.appendChild(playBtn);
+                    }
+                });
+            }
+        });
+        
+        // 重置抽奖
+        document.getElementById('resetDraw').addEventListener('click', function() {
+            if(isDrawing) {
+                clearInterval(drawInterval);
+            }
+            document.getElementById('configSection').classList.remove('hidden');
+            document.getElementById('drawSection').classList.add('hidden');
+            document.getElementById('winnersList').innerHTML = '<h3>获奖名单</h3>';
+            document.getElementById('toggleDraw').disabled = false; 
+            document.getElementById('toggleDraw').textContent = '开始'; 
+            winners.clear();
+            currentPrizeLevel = 3;
+            isDrawing = false;
+
+            // 停止背景音乐
+            const audio = document.getElementById('bgMusic');
+            audio.pause();
+            audio.currentTime = 0;
+
+            // 移除播放按钮（如果存在）
+            const playBtn = document.getElementById('playMusicBtn');
+            if (playBtn) {
+                playBtn.remove();
+            }
+
+            // 保持背景图
+            if(backgroundImage) {
+                document.body.style.backgroundImage = `url(${backgroundImage})`;
+            }
+        });
+        
+        // 切换抽奖状态
+        document.getElementById('toggleDraw').addEventListener('click', function() {
+            if(isDrawing) {
+                stopDrawing();
+            } else {
+                startDrawing();
+            }
+        });
+
+        function drawCandidatePhoto() {
+            const currentAvailable = getAvailableParticipants();
+            if(currentAvailable.length > 0) {
+                const randomIndex = Math.floor(Math.random() * currentAvailable.length);
+                document.getElementById('displayPhoto').src = currentAvailable[randomIndex];
+            }
+        }
+
+        function drawWinnerPhoto(winner) {
+            document.getElementById('displayPhoto').src = winner;
+        }
+        
+        function startDrawing() {
+            const availableParticipants = getAvailableParticipants();
+            if(availableParticipants.length === 0) {
+                showAlert('没有可参与抽奖的人了！');
+                return;
+            }
+            
+            isDrawing = true;
+            document.getElementById('toggleDraw').textContent = '停止';
+            drawInterval = setInterval(drawCandidatePhoto, 100);
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+            clearInterval(drawInterval);
+            document.getElementById('toggleDraw').textContent = '继续';
+            
+            // 选择获奖者
+            const availableParticipants = getAvailableParticipants();
+            if(availableParticipants.length > 0) {
+                const winner = availableParticipants[Math.floor(Math.random() * availableParticipants.length)];
+                drawWinnerPhoto(winner);
+                // 将获奖者添加到对应奖项
+                if(!winners.has(currentPrizeLevel)) {
+                    winners.set(currentPrizeLevel, []);
+                }
+                winners.get(currentPrizeLevel).push(winner);
+                
+                // 更新获奖名单显示
+                updateWinnersList();
+                
+                // 检查是否需要进入下一轮
+                if(shouldMoveToNextPrize()) {
+                    currentPrizeLevel--;
+                    if(currentPrizeLevel < 1) {
+                        document.getElementById('currentPrize').textContent = '抽奖完成!'
+                        document.getElementById('toggleDraw').disabled = true;
+                    } else {
+                        updatePrizeDisplay();
+                    }
+                }
+            }
+        }
+        
+        function getAvailableParticipants() {
+            // 获取所有已中奖的人
+            const allWinners = new Set();
+            winners.forEach(winnerList => {
+                winnerList.forEach(winner => allWinners.add(winner));
+            });
+            
+            // 返回未中奖的人
+            return participants.filter(p => !allWinners.has(p));
+        }
+        
+        function updateWinnersList() {
+            const winnersList = document.getElementById('winnersList');
+            winnersList.innerHTML = '<h3 class="text-center">获奖名单</h3>';
+            
+            // 按奖项顺序显示（从一等奖到三等奖）
+            for(let level = 1; level <= 3; level++) {
+                if(winners.has(level)) {
+                    const levelWinners = winners.get(level);
+                    const prizeDiv = document.createElement('div');
+                    prizeDiv.className = 'prize-group';
+                    prizeDiv.innerHTML = `<h4>${getPrizeName(level)}</h4>`;
+                    
+                    levelWinners.forEach((winner, index) => {
+                        const winnerDiv = document.createElement('div');
+                        winnerDiv.className = 'winner-card';
+                        winnerDiv.innerHTML = `
+                            <img src="${winner}" alt="获奖者">
+                            <button class="delete-winner" title="删除获奖者">×</button>
+                        `;
+                        
+                        // 添加删除按钮事件
+                        const deleteBtn = winnerDiv.querySelector('.delete-winner');
+                        deleteBtn.addEventListener('click', () => {
+                            // 从获奖名单中移除
+                            levelWinners.splice(index, 1);
+                            if(levelWinners.length === 0) {
+                                winners.delete(level);
+                            }
+
+                            // 重置抽奖状态
+                            document.getElementById('toggleDraw').disabled = false;
+                            document.getElementById('toggleDraw').textContent = '开始';
+                            isDrawing = false;
+                            if(drawInterval) {
+                                clearInterval(drawInterval);
+                            }
+
+                            // 重新计算当前应该抽取的奖项等级
+                            let newLevel = 3;
+                            while (newLevel > 1 && shouldMoveToNextPrize(newLevel)) {
+                                newLevel--;
+                            }
+                            
+                            // 如果删除的是当前等级或更高等级的获奖者，更新当前等级
+                            if (level >= currentPrizeLevel) {
+                                currentPrizeLevel = newLevel;
+                            }
+
+                            // 更新显示
+                            updateWinnersList();
+                            updatePrizeDisplay();
+                        });
+                        
+                        prizeDiv.appendChild(winnerDiv);
+                    });
+                    
+                    winnersList.appendChild(prizeDiv);
+                }
+            }
+        }
+        
+        function getPrizeName(level) {
+            switch(level) {
+                case 1: return '一等奖';
+                case 2: return '二等奖';
+                case 3: return '三等奖';
+                default: return '';
+            }
+        }
+        
+        function updatePrizeDisplay() {
+            document.getElementById('currentPrize').textContent = 
+                `正在抽取：${getPrizeName(currentPrizeLevel)}`;
+        }
+        
+        function shouldMoveToNextPrize(level = currentPrizeLevel) {
+            const prizeCount = {
+                1: parseInt(document.getElementById('firstPrize').value),
+                2: parseInt(document.getElementById('secondPrize').value),
+                3: parseInt(document.getElementById('thirdPrize').value)
+            };
+            
+            const levelWinners = winners.get(level) || [];
+            return levelWinners.length >= prizeCount[level];
+        }
+
+        function deleteWinner(winner) {
+            // 实现删除逻辑
+            console.log('删除获奖者:', winner);
+        }
+
+        function showAlert(message) {
+            document.getElementById('alertContent').textContent = message;
+            document.getElementById('alertOverlay').style.display = 'block';
+            document.getElementById('customAlert').style.display = 'block';
+        }
+
+        function closeAlert() {
+            document.getElementById('alertOverlay').style.display = 'none';
+            document.getElementById('customAlert').style.display = 'none';
+        }
+
+        // 添加输入框值变化的监听
+        ['firstPrize', 'secondPrize', 'thirdPrize'].forEach(id => {
+            document.getElementById(id).addEventListener('change', function(e) {
+                if (parseInt(this.value) <= 0) {
+                    this.value = 1;  // 如果输入小于等于0，自动设置为1
+                }
+            });
+        });
+    </script>
+</body>
+</html>
